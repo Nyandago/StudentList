@@ -6,26 +6,25 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.lang.Exception
-import java.sql.SQLClientInfoException
 
 class MySQLHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
 
     companion object{
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "student.db"
-        private const val TBL_STUDENT = "tb1_student"
+        private const val TBL_STUDENT = "tbl_student"
         private const val ID = "id"
-        private const val firstName = ""
-        private const val lastName = ""
-        private const val email = ""
+        private const val firstName = "firstName"
+        private const val lastName = "lastName"
+        private const val email = "email"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
       val createTblStudent = ("CREATE TABLE "+ TBL_STUDENT +
-              "("+ ID + "INTEGER PRIMARY KEY,"+
-              firstName +"TEXT,"+
-              lastName+"TEXT,"+
-              email +"TEXT"+")")
+              "("+ ID + " INTEGER PRIMARY KEY,"+
+              firstName +" TEXT,"+
+              lastName+" TEXT,"+
+              email +" TEXT"+")")
         db?.execSQL(createTblStudent)
     }
 

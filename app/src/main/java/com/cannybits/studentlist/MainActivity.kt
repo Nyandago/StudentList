@@ -3,6 +3,7 @@ package com.cannybits.studentlist
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getStudents() {
-
+        val stdList = sqliteHelper.getAllStudents()
+        Log.e("mitambo", stdList.size.toString())
     }
 
     private fun addStudent() {
