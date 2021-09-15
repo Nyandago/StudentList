@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etLastName" />
 
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnAddStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <Button
-        android:id="@+id/btnViewList"
+        android:id="@+id/btnViewStudentList"
         android:layout_width="293dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -70,5 +70,5 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSubmit" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddStudent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
