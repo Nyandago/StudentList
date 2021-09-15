@@ -1,0 +1,84 @@
+package com.cannybits.studentlist
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import java.lang.Exception
+import java.sql.SQLClientInfoException
+
+class MySQLHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
+
+    companion object{
+        private const val DATABASE_VERSION = 1
+        private const val DATABASE_NAME = "student.db"
+        private const val TBL_STUDENT = "tb1_student"
+        private const val ID = "id"
+        private const val firstName = ""
+        private const val lastName = ""
+        private const val email = ""
+    }
+
+    override fun onCreate(db: SQLiteDatabase?) {
+      val createTblStudent = ("CREATE TABLE "+ TBL_STUDENT +
+              "("+ ID + "INTEGER PRIMARY KEY,"+
+              firstName +"TEXT,"+
+              lastName+"TEXT,"+
+              email +"TEXT"+")")
+        db?.execSQL(createTblStudent)
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        db!!.execSQL("DROP TABLE IF EXISTS $TBL_STUDENT")
+        onCreate(db)
+    }
+
+    fun insertStudent(std: StudentModel) : Long{
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID, std.id)
+        contentValues.put(firstName, std.firstName)
+        contentValues.put(lastName, std.lastName)
+        contentValues.put(email, std.email)
+
+        val success = db.insert(TBL_STUDENT,null,contentValues)
+        db.close()
+        return success
+    }
+
+    fun getAllStudents() : ArrayList<StudentModel>{
+        val stdList: ArrayList<StudentModel> = ArrayList()
+        val selectQuery = "SELECT * FROM $TBL_STUDENT"
+        val db = this.readableDatabase
+
+        val cursor : Cursor?
+
+        try {
+            cursor = db.rawQuery(selectQuery,null)
+        } catch(e: Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+
+        var id: Int
+        var firstName: String
+        var lastName: String
+        var email: String
+
+        if(cursor.moveToFirst()){
+            do {
+                id = cursor.getInt(cursor.getColumnIndex("id"))
+                firstName = cursor.getString(cursor.getColumnIndex("firstname"))
+                lastName = cursor.getString(cursor.getColumnIndex("lastname"))
+                email = cursor.getString(cursor.getColumnIndex("email"))
+
+                val std = StudentModel(id = id,firstName = firstName,lastName = lastName, email = email)
+                stdList.add(std)
+            } while (cursor.moveToNext())
+        }
+        return stdList
+    }
+}
