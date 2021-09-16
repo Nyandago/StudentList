@@ -1,12 +1,13 @@
 package com.cannybits.studentlist
 
-import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,12 +19,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnViewList : Button
 
     private lateinit var sqliteHelper: MySQLHelper
+    private lateinit var recyclerView: RecyclerView
+    private var adapter: StudentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initView()
+        initRecyclerView()
         sqliteHelper = MySQLHelper(this)
 
         btnAdd.setOnClickListener { addStudent() }
@@ -33,6 +37,9 @@ class MainActivity : AppCompatActivity() {
     private fun getStudents() {
         val stdList = sqliteHelper.getAllStudents()
         Log.e("canny", stdList.size.toString())
+
+        //Display Students list in Recycler view
+        adapter?.addItems(stdList)
     }
 
     private fun addStudent() {
@@ -43,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()){
             Toast.makeText(this,"Please Enter all details",Toast.LENGTH_LONG).show()
         } else{
-            val std = StudentModel(firstName=firstName,lastName = lastName,email = email)
-            val status = sqliteHelper.insertStudent(std)
+            val student = StudentModel(firstName=firstName,lastName = lastName,email = email)
+            val status = sqliteHelper.insertStudent(student)
 
             //check if successfully added
             if(status > -1){
@@ -61,7 +68,12 @@ class MainActivity : AppCompatActivity() {
         edLastName.setText("")
         edEmail.setText("")
         edFirstName.requestFocus()
+    }
 
+    private fun initRecyclerView(){
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = StudentAdapter()
+        recyclerView.adapter = adapter
     }
 
     private fun initView() {
@@ -70,5 +82,6 @@ class MainActivity : AppCompatActivity() {
         edEmail = etEmail
         btnAdd = btnAddStudent
         btnViewList = btnViewStudentList
+        recyclerView = rvStudentList
     }
 }
