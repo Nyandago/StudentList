@@ -11,7 +11,7 @@ data class StudentModel (
     companion object{
         fun getAutoId():Int{
             val random = Random
-            return random.nextInt(100)
+            return random.nextInt(100,1000)
         }
     }
 }
