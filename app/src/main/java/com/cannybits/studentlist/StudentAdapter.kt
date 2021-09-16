@@ -8,10 +8,10 @@ import kotlinx.android.synthetic.main.card_items_student.view.*
 
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
 
-    private var stdList : ArrayList<StudentModel> = ArrayList()
+    private var studentList : ArrayList<StudentModel> = ArrayList()
 
     fun addItems(items: ArrayList<StudentModel>){
-        this.stdList = items
+        this.studentList = items
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder (
@@ -19,12 +19,12 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
         )
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-        val std = stdList[position]
+        val std = studentList[position]
         holder.bindView(std)
     }
 
     override fun getItemCount(): Int {
-    return stdList.size
+        return studentList.size
     }
 
     class StudentViewHolder(var view : View):RecyclerView.ViewHolder(view){
