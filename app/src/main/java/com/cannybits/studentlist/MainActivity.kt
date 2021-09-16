@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getStudents() {
         val stdList = sqliteHelper.getAllStudents()
-        Log.e("canny", stdList.size.toString())
+       // Log.e("canny", stdList.size.toString())
 
         //Display Students list in Recycler view
         adapter?.addItems(stdList)
