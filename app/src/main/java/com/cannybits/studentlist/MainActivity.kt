@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getStudents() {
         val stdList = sqliteHelper.getAllStudents()
-        Log.d("mitambo", stdList.size.toString())
+        Log.e("canny", stdList.size.toString())
     }
 
     private fun addStudent() {
