@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnAddStudent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rvStudentList"
         android:layout_width="403dp"
         android:layout_height="307dp"
         android:layout_marginStart="16dp"
