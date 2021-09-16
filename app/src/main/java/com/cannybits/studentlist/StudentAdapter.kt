@@ -12,6 +12,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
 
     fun addItems(items: ArrayList<StudentModel>){
         this.studentList = items
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder (
