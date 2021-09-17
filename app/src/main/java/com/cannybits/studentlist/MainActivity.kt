@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         btnAdd.setOnClickListener { addStudent() }
         btnViewList.setOnClickListener { getStudents() }
+        adapter?.setOnClickItem { Toast.makeText(this,it.lastName+", "+it.firstName,Toast.LENGTH_SHORT).show() }
     }
 
     private fun getStudents() {
