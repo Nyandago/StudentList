@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.provider.ContactsContract
 import java.lang.Exception
 
 class MySQLHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
@@ -79,5 +80,19 @@ class MySQLHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nul
             } while (cursor.moveToNext())
         }
         return stdList
+    }
+
+    fun updateStudent(std: StudentModel): Int{
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID, std.id)
+        contentValues.put(firstName, std.firstName)
+        contentValues.put(lastName, std.lastName)
+        contentValues.put(email,std.email)
+
+        val success = db.update(TBL_STUDENT, contentValues, "id="+std.id,null)
+        db.close()
+        return success
     }
 }
