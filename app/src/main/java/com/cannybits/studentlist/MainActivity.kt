@@ -17,10 +17,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var edEmail : EditText
     private lateinit var btnAdd : Button
     private lateinit var btnViewList : Button
+    private lateinit var btnUpdate : Button
 
     private lateinit var sqliteHelper: MySQLHelper
     private lateinit var recyclerView: RecyclerView
     private var adapter: StudentAdapter? = null
+    private var std:StudentModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,16 @@ class MainActivity : AppCompatActivity() {
 
         btnAdd.setOnClickListener { addStudent() }
         btnViewList.setOnClickListener { getStudents() }
-        adapter?.setOnClickItem { Toast.makeText(this,it.lastName+", "+it.firstName,Toast.LENGTH_SHORT).show() }
+        btnUpdate.setOnClickListener { updateStudent() }
+
+        adapter?.setOnClickItem { Toast.makeText(this,it.lastName+", "+it.firstName,Toast.LENGTH_SHORT).show()
+
+            //to update an item
+            etFirstName.setText(it.firstName)
+            etLastName.setText(it.lastName)
+            etEmail.setText(it.email)
+            std = it
+        }
     }
 
     private fun getStudents() {
@@ -64,6 +75,28 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    private fun updateStudent(){
+        val firstName = etFirstName.text.toString()
+        val lastName = etLastName.text.toString()
+        val email = etEmail.text.toString()
+
+        //check if record is not changed
+        if(firstName == std?.firstName && lastName == std?.lastName && email == std?.email){
+            Toast.makeText(this, "Record Not changed ...",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if(std == null) return
+
+        val std = StudentModel(id = std!!.id, firstName = firstName, lastName = lastName, email = email)
+        val status = sqliteHelper.updateStudent(std)
+        if(status > -1){
+            clearEditText()
+            getStudents()
+        } else{
+            Toast.makeText(this,"Student not updated...",Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private fun clearEditText() {
         edFirstName.setText("")
@@ -84,6 +117,7 @@ class MainActivity : AppCompatActivity() {
         edEmail = etEmail
         btnAdd = btnAddStudent
         btnViewList = btnViewStudentList
+        btnUpdate = btnUpdateStudent
         recyclerView = rvStudentList
     }
 }
