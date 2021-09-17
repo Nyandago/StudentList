@@ -78,11 +78,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        edFirstName = findViewById(R.id.etFirstName)
-        edLastName = findViewById(R.id.etLastName)
-        edEmail = findViewById(R.id.etEmail)
-        btnAdd = findViewById(R.id.btnAddStudent)
-        btnViewList = findViewById(R.id.btnViewStudentList)
-        recyclerView = findViewById(R.id.rvStudentList)
+        edFirstName = etFirstName
+        edLastName = etLastName
+        edEmail = etEmail
+        btnAdd = btnAddStudent
+        btnViewList = btnViewStudentList
+        recyclerView = rvStudentList
     }
 }
