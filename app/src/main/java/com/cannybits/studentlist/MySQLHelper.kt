@@ -70,8 +70,8 @@ class MySQLHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nul
         if(cursor.moveToFirst()){
             do {
                 id = cursor.getInt(cursor.getColumnIndex("id"))
-                firstName = cursor.getString(cursor.getColumnIndex("firstname"))
-                lastName = cursor.getString(cursor.getColumnIndex("lastname"))
+                firstName = cursor.getString(cursor.getColumnIndex("firstName"))
+                lastName = cursor.getString(cursor.getColumnIndex("lastName"))
                 email = cursor.getString(cursor.getColumnIndex("email"))
 
                 val std = StudentModel(id = id,firstName = firstName,lastName = lastName, email = email)
