@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getStudents() {
         val stdList = sqliteHelper.getAllStudents()
-        //Toast.makeText(this, "${stdList.size}",Toast.LENGTH_SHORT).show()
 
         //Display Students list in Recycler view
         adapter?.addItems(stdList)
