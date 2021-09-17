@@ -3,9 +3,8 @@ package com.cannybits.studentlist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.card_items_student.view.*
 
 
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
@@ -31,11 +30,11 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
     }
 
     class StudentViewHolder(var view : View):RecyclerView.ViewHolder(view){
-        private var id = view.findViewById<TextView>(R.id.tvId)
-        private var firstName = view.findViewById<TextView>(R.id.tvFirstName)
-        private var lastName = view.findViewById<TextView>(R.id.tvLastName)
-        private var email = view.findViewById<TextView>(R.id.tvEmail)
-        private var btnDelete = view.findViewById<Button>(R.id.btnDelete)
+        private var id = view.tvId
+        private var firstName = view.tvFirstName
+        private var lastName = view.tvLastName
+        private var email = view.tvEmail
+        private var btnDelete = view.btnDelete
 
         fun bindView(std: StudentModel){
             id.text = std.id.toString()
