@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
             dialog,_ ->
             sqliteHelper.deleteStudentById(id)
             getStudents()
+            clearEditText()
             dialog.dismiss()
         }
         builder.setNegativeButton("No"){
