@@ -3,6 +3,7 @@ package com.cannybits.studentlist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AdapterListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_items_student.view.*
 
@@ -10,10 +11,15 @@ import kotlinx.android.synthetic.main.card_items_student.view.*
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
 
     private var stdList : ArrayList<StudentModel> = ArrayList()
+    private var onClickItem : ((StudentModel)->Unit)? = null
 
     fun addItems(items: ArrayList<StudentModel>){
         this.stdList = items
          notifyDataSetChanged()
+    }
+
+    fun setOnClickItem(callback: (StudentModel)-> Unit){
+        this.onClickItem = callback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder (
@@ -23,6 +29,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val std = stdList[position]
         holder.bindView(std)
+        holder.itemView.setOnClickListener{ onClickItem?.invoke(std) }
     }
 
     override fun getItemCount(): Int {
