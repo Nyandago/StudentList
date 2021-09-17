@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
             etLastName.setText(it.lastName)
             etEmail.setText(it.email)
             std = it
+        }
+
+        adapter?.setOnClickDeleteItem {
+            deleteStudent(it.id)
         }
     }
 
@@ -96,6 +101,24 @@ class MainActivity : AppCompatActivity() {
         } else{
             Toast.makeText(this,"Student not updated...",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun deleteStudent(id: Int){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Are you sure you want to delete this student?")
+        builder.setCancelable(true)
+        builder.setPositiveButton("Yes"){
+            dialog,_ ->
+            sqliteHelper.deleteStudentById(id)
+            getStudents()
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("No"){
+                dialog,_ -> dialog.dismiss()
+        }
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun clearEditText() {

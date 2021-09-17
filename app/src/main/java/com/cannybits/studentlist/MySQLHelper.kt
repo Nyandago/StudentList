@@ -95,4 +95,16 @@ class MySQLHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,nul
         db.close()
         return success
     }
+
+    fun deleteStudentById(id:Int) : Int{
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID,id)
+
+        val success = db.delete(TBL_STUDENT, "id=$id", null)
+        db.close()
+
+        return success
+    }
 }
