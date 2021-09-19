@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_student_list.*
 
 private lateinit var sqliteHelper: MySQLHelper
 private lateinit var recyclerView: RecyclerView
@@ -33,7 +34,7 @@ class StudentListActivity : AppCompatActivity() {
     }
 
     private fun initView(){
-        recyclerView = rvStudentList
+        recyclerView = rvFullStudentList
     }
     private fun getStudents(){
         val allStudents = sqliteHelper.getAllStudents()

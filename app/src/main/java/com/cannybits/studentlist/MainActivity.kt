@@ -1,5 +1,6 @@
 package com.cannybits.studentlist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -37,7 +38,10 @@ class MainActivity : AppCompatActivity() {
         btnAdd.setOnClickListener { addStudent() }
         btnViewList.setOnClickListener { getStudents() }
         btnUpdate.setOnClickListener { updateStudent() }
-        btnFullScreenList.setOnClickListener { /* call student list xml*/ }
+        btnFullScreenList.setOnClickListener {
+            val intent = Intent(this@MainActivity, StudentListActivity::class.java)
+            startActivity(intent)
+        }
 
         adapter?.setOnClickItem { Toast.makeText(this,it.lastName+", "+it.firstName,Toast.LENGTH_SHORT).show()
 
