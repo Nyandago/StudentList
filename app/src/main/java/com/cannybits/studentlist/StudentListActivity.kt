@@ -20,6 +20,8 @@ class StudentListActivity : AppCompatActivity() {
         initView()
         initRecyclerView()
         sqliteHelper = MySQLHelper(this)
+
+        getStudents()
     }
 
 
@@ -32,6 +34,11 @@ class StudentListActivity : AppCompatActivity() {
 
     private fun initView(){
         recyclerView = rvStudentList
+    }
+    private fun getStudents(){
+        val allStudents = sqliteHelper.getAllStudents()
+
+        adapter?.addItems(allStudents)
     }
 
 }

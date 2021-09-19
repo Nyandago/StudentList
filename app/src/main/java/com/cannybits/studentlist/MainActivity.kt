@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-     fun updateStudent(){
+    private fun updateStudent(){
         val firstName = etFirstName.text.toString()
         val lastName = etLastName.text.toString()
         val email = etEmail.text.toString()
