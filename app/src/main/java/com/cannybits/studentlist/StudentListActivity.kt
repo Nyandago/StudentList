@@ -1,5 +1,6 @@
 package com.cannybits.studentlist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -12,6 +13,9 @@ import kotlinx.android.synthetic.main.activity_student_list.*
 
 private lateinit var sqliteHelper: MySQLHelper
 private lateinit var recyclerView: RecyclerView
+
+private lateinit var btnGoHome : Button
+
 private var adapter: StudentAdapter? = null
 
 
@@ -26,9 +30,13 @@ class StudentListActivity : AppCompatActivity() {
 
         getStudents()
 
-
         adapter?.setOnClickDeleteItem {
             deleteStudent(it.id)
+        }
+
+        btnGoHome.setOnClickListener {
+            val intent = Intent(this@StudentListActivity, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -42,6 +50,7 @@ class StudentListActivity : AppCompatActivity() {
 
     private fun initView(){
         recyclerView = rvFullStudentList
+        btnGoHome = btnBackHome
     }
     private fun getStudents(){
         val allStudents = sqliteHelper.getAllStudents()
