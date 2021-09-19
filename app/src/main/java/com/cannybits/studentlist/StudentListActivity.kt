@@ -4,22 +4,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_student_list.*
 
-private lateinit var sqliteHelper: MySQLHelper
-private lateinit var recyclerView: RecyclerView
 
-private lateinit var btnGoHome : Button
-
-private var adapter: StudentAdapter? = null
 
 
 class StudentListActivity : AppCompatActivity() {
+
+    private lateinit var sqliteHelper: MySQLHelper
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var btnGoHome : Button
+
+    private var adapter: StudentAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_list)
