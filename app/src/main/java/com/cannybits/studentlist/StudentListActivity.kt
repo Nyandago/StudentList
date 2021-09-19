@@ -11,15 +11,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_student_list.*
 
 
-
-
 class StudentListActivity : AppCompatActivity() {
 
     private lateinit var sqliteHelper: MySQLHelper
     private lateinit var recyclerView: RecyclerView
-
     private lateinit var btnGoHome : Button
-
     private var adapter: StudentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +25,6 @@ class StudentListActivity : AppCompatActivity() {
         initView()
         initRecyclerView()
         sqliteHelper = MySQLHelper(this)
-
         getStudents()
 
         adapter?.setOnClickDeleteItem {
@@ -42,8 +37,6 @@ class StudentListActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun initRecyclerView(){
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = StudentAdapter()
@@ -54,14 +47,13 @@ class StudentListActivity : AppCompatActivity() {
         recyclerView = rvFullStudentList
         btnGoHome = btnBackHome
     }
+
     private fun getStudents(){
         val allStudents = sqliteHelper.getAllStudents()
-
         adapter?.addItems(allStudents)
     }
 
     private fun deleteStudent(id: Int){
-
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Are you sure you want to delete this student?")
         builder.setCancelable(true)
