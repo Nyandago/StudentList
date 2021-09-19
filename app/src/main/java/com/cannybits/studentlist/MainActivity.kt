@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var edEmail : EditText
     private lateinit var btnAdd : Button
     private lateinit var btnViewList : Button
+    private lateinit var btnFullScreenList : Button
     private lateinit var btnUpdate : Button
 
     private lateinit var sqliteHelper: MySQLHelper
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         btnAdd.setOnClickListener { addStudent() }
         btnViewList.setOnClickListener { getStudents() }
         btnUpdate.setOnClickListener { updateStudent() }
+        btnFullScreenList.setOnClickListener { /* call student list xml*/ }
 
         adapter?.setOnClickItem { Toast.makeText(this,it.lastName+", "+it.firstName,Toast.LENGTH_SHORT).show()
 
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    private fun updateStudent(){
+     fun updateStudent(){
         val firstName = etFirstName.text.toString()
         val lastName = etLastName.text.toString()
         val email = etEmail.text.toString()
@@ -142,5 +144,6 @@ class MainActivity : AppCompatActivity() {
         btnViewList = btnViewStudentList
         btnUpdate = btnUpdateStudent
         recyclerView = rvStudentList
+        btnFullScreenList = btnFullList
     }
 }

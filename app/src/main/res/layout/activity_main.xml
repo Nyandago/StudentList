@@ -76,17 +76,13 @@
 
     <Button
         android:id="@+id/btnViewStudentList"
-        android:layout_width="293dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:text="View Student List"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddStudent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateStudent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvStudentList"
@@ -97,4 +93,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnViewStudentList" />
+
+    <Button
+        android:id="@+id/btnFullList"
+        android:layout_width="173dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="16dp"
+        android:text="FullScreen list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnViewStudentList"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddStudent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
